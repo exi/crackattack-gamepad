@@ -51,9 +51,23 @@ else
   PACKAGE_CFLAGS=""
   PACKAGE_LIBS=""
 fi
+
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 AM_CONDITIONAL([WANT_GTK], [test "$enable_gtk" = yes])
+
+AC_ARG_ENABLE(gamepad,
+  AC_HELP_STRING([--enable-gamepad=[yes/no]],
+    [Enables gamepad support [default=yes]]),
+  enable_gamepad="$enableval",
+  enable_gamepad="no")
+if test "$enable_gamepad" = "yes"; then
+  AC_DEFINE([WANT_GAMEPAD], [], [Wants to compile gamepad support])
+fi
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
+AM_CONDITIONAL([WANT_GAMEPAD], [test "$enable_gamepad" = yes])
+
 
 dnl Check for sound support
 AC_ARG_ENABLE(sound,

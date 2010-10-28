@@ -291,6 +291,11 @@ void Game::idleMeta (   )
 
   int modified_and_complete = false;
 
+#ifdef WANT_GAMEPAD
+  //poll gamepad
+  Controller::gamepadEvent();
+#endif
+
   do {
 
     int time = glutGet((GLenum) GLUT_ELAPSED_TIME);
@@ -361,6 +366,11 @@ void Game::idlePlay (   )
 #endif
 
   int modified_and_complete = false;
+
+#ifdef WANT_GAMEPAD
+  //poll gamepad
+  Controller::gamepadEvent();
+#endif
 
   do {
 

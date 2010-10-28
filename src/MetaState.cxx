@@ -63,6 +63,9 @@ void MetaState::programStart ( int _mode,
   MessageManager::readyMessage(MS_ANYKEY);
 
   glutKeyboardFunc(Controller::keyboardMeta);
+#ifdef WANT_GAMEPAD
+  Controller::gamepadInit("/dev/input/js0");
+#endif
   glutSpecialFunc(Controller::specialMeta);
   glutKeyboardUpFunc(null);
   glutSpecialUpFunc(null);

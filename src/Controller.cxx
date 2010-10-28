@@ -36,6 +36,10 @@
 #include "MetaState.h"
 #include "Grid.h"
 
+#ifdef WANT_GAMEPAD
+#include "Gamepad.h"
+#endif
+
 #ifdef DEVELOPMENT
 #include "Displayer.h"
 #endif
@@ -43,6 +47,10 @@
 using namespace std;
 
 int Controller::state;
+
+#ifdef WANT_GAMEPAD
+Gamepad Controller::gamepad;
+#endif
 
 void Controller::gameStart (   )
 {
@@ -125,6 +133,23 @@ void Controller::keyboardUpPlay ( unsigned char key, int x, int y )
   if(keypressed)
     ActionRecorder::addAction(state);
 }
+
+#ifdef WANT_GAMEPAD
+void Controller::gamepadInit ( char* dev ) {
+  gamepad = Gamepad( dev );
+}
+
+void Controller::gamepadEvent ()
+{
+    int oldstate = state;
+    state = gamepad.modifyState( state );
+    if (oldstate != state) {
+        ActionRecorder::addAction(state);
+        MetaState::localKeyPressed(true);
+    }
+}
+#endif
+
 
 void Controller::specialPlay ( int key, int x, int y )
 {

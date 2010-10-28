@@ -32,3 +32,7 @@ INCLUDES = @PACKAGE_CFLAGS@ @DEBUG_INCLUDES@ ${PATH_INCLUDES}
 crack_attack_DEPENDENCIES = $(GUI_LIBS)
 AM_LDFLAGS = ${all_libraries}
 crack_attack_LDADD = ${X_PRE_LIBS} ${X_LIBS} ${X_EXTRA_LIBS} -lGL -lGLU -lglut -lXi -lX11 -lXmu $(GUI_LIBS) @PACKAGE_LIBS@ @AUDIO_LIBS@
+if WANT_GAMEPAD
+    crack_attack_LDADD += -lm
+    crack_attack_SOURCES += Gamepad.cxx Gamepad.h
+endif

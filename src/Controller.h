@@ -23,8 +23,12 @@
  * Columbus, OH  43210
  */
 
-#ifndef CONTORLLER_H
-#define CONTORLLER_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
+
+#ifdef WANT_GAMEPAD
+#include "Gamepad.h"
+#endif
 
 using namespace std;
 
@@ -41,6 +45,9 @@ public:
   static void gameStart (   );
   static void keyboardPlay ( unsigned char key, int x, int y );
   static void keyboardUpPlay ( unsigned char key, int x, int y );
+  static void gamepadInit ( char* dev );
+  static void gamepadEvent ( );
+  static void gamepadCleanup ( );
   static void specialPlay ( int key, int x, int y );
   static void specialUpPlay ( int key, int x, int y );
   static void keyboardMeta ( unsigned char key, int x, int y );
@@ -63,6 +70,9 @@ public:
 
 private:
   static int state;
+#ifdef WANT_GAMEPAD
+  static Gamepad gamepad;
+#endif
 };
 
 #endif
