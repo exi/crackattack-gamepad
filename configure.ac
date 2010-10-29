@@ -60,7 +60,7 @@ AC_ARG_ENABLE(gamepad,
   AC_HELP_STRING([--enable-gamepad=[yes/no]],
     [Enables gamepad support [default=yes]]),
   enable_gamepad="$enableval",
-  enable_gamepad="no")
+  enable_gamepad=yes)
 if test "$enable_gamepad" = "yes"; then
   AC_DEFINE([WANT_GAMEPAD], [], [Wants to compile gamepad support])
 fi
