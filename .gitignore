@@ -1,0 +1,13 @@
+*.o
+src/tags
+src/crack-attack
+src/config.h*
+src/gtk-gui/.deps
+src/gtk-gui/libgtkgui.a
+src/stamp-h1
+install
+config.status
+config.log
+autom4te.cache
+autopackage
+src/.deps
